@@ -1,12 +1,16 @@
 public class Registro {
     private Miembros[] miembros;
-    private Entrenadores[] entrenadores;
+    private Entrenadores[] entrenadores,entrenadoresselec;
     private Rutinas[] rutinas;
     private int index, index2, index3;
 
     public Registro() {
         miembros = new Miembros[15];
         entrenadores = new Entrenadores[15];
+        entrenadoresselec = new Entrenadores[3];
+        entrenadoresselec[0] = new Entrenadores(1, "Juan Carlos Villagrande");
+        entrenadoresselec[1] = new Entrenadores(2, "Ana Lucia Maldonado");
+        entrenadoresselec[2] = new Entrenadores(3, "Luis Estrada Cabrera");
         rutinas = new Rutinas[15];
         index = 0;
         index2 = 0;
@@ -18,19 +22,14 @@ public class Registro {
             Miembros miem = new Miembros(nombre, membresia);
             miembros[index] = miem;
             index++;
-        } else {
-            System.out.println("No se pueden agregar más miembros.");
         }
     }
 
-    public void agregarEntrenador(String nombre, int numero) {
-        if (index2 >= 0 && index2 < 15) {
-            Entrenadores entr = new Entrenadores(numero, nombre);
-            entrenadores[index2] = entr;
+    public void ElegirEntrenador(int numero) {
+        Entrenadores entrSeleccionado = entrenadoresselec[numero - 1]; 
+            entrenadores[index2] = entrSeleccionado;
+            entrSeleccionado.setCantidad();
             index2++;
-        } else {
-            System.out.println("No se pueden agregar más entrenadores.");
-        }
     }
     
     public void agregarRutina(int tipoRutina) {
@@ -38,8 +37,6 @@ public class Registro {
             Rutinas rut = new Rutinas(tipoRutina);
             rutinas[index3] = rut;
             index3++;
-        } else {
-            System.out.println("No se pueden agregar más rutinas.");
         }
     }
 
@@ -50,7 +47,9 @@ public class Registro {
     public Entrenadores[] getEntrenadores() {
         return entrenadores;
     }
-
+    public Entrenadores[] getEntrenadoressel(){
+        return entrenadoresselec;
+    }
     public Rutinas[] getRutinas() {
         return rutinas;
     }
